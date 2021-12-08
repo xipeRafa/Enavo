@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/deliver/static/js/main.c3e61db9.chunk.js",
-    "main.js.map": "/deliver/static/js/main.c3e61db9.chunk.js.map",
-    "runtime-main.js": "/deliver/static/js/runtime-main.e4fb1c1f.js",
-    "runtime-main.js.map": "/deliver/static/js/runtime-main.e4fb1c1f.js.map",
-    "static/css/2.54370922.chunk.css": "/deliver/static/css/2.54370922.chunk.css",
-    "static/js/2.778ed4fa.chunk.js": "/deliver/static/js/2.778ed4fa.chunk.js",
-    "static/js/2.778ed4fa.chunk.js.map": "/deliver/static/js/2.778ed4fa.chunk.js.map",
-    "index.html": "/deliver/index.html",
-    "static/css/2.54370922.chunk.css.map": "/deliver/static/css/2.54370922.chunk.css.map",
-    "static/js/2.778ed4fa.chunk.js.LICENSE.txt": "/deliver/static/js/2.778ed4fa.chunk.js.LICENSE.txt"
+    "main.js": "/Enavo/static/js/main.f91d21c6.chunk.js",
+    "main.js.map": "/Enavo/static/js/main.f91d21c6.chunk.js.map",
+    "runtime-main.js": "/Enavo/static/js/runtime-main.3e073f13.js",
+    "runtime-main.js.map": "/Enavo/static/js/runtime-main.3e073f13.js.map",
+    "static/css/2.54370922.chunk.css": "/Enavo/static/css/2.54370922.chunk.css",
+    "static/js/2.bbff277b.chunk.js": "/Enavo/static/js/2.bbff277b.chunk.js",
+    "static/js/2.bbff277b.chunk.js.map": "/Enavo/static/js/2.bbff277b.chunk.js.map",
+    "index.html": "/Enavo/index.html",
+    "static/css/2.54370922.chunk.css.map": "/Enavo/static/css/2.54370922.chunk.css.map",
+    "static/js/2.bbff277b.chunk.js.LICENSE.txt": "/Enavo/static/js/2.bbff277b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e4fb1c1f.js",
+    "static/js/runtime-main.3e073f13.js",
     "static/css/2.54370922.chunk.css",
-    "static/js/2.778ed4fa.chunk.js",
-    "static/js/main.c3e61db9.chunk.js"
+    "static/js/2.bbff277b.chunk.js",
+    "static/js/main.f91d21c6.chunk.js"
   ]
 }
