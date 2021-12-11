@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/Enavo/static/js/main.52dd18f8.chunk.js",
-    "main.js.map": "/Enavo/static/js/main.52dd18f8.chunk.js.map",
+    "main.js": "/Enavo/static/js/main.d2b7c6c8.chunk.js",
+    "main.js.map": "/Enavo/static/js/main.d2b7c6c8.chunk.js.map",
     "runtime-main.js": "/Enavo/static/js/runtime-main.3e073f13.js",
     "runtime-main.js.map": "/Enavo/static/js/runtime-main.3e073f13.js.map",
     "static/css/2.54370922.chunk.css": "/Enavo/static/css/2.54370922.chunk.css",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.3e073f13.js",
     "static/css/2.54370922.chunk.css",
     "static/js/2.3a2baf6a.chunk.js",
-    "static/js/main.52dd18f8.chunk.js"
+    "static/js/main.d2b7c6c8.chunk.js"
   ]
 }
