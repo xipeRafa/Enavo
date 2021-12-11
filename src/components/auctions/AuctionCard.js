@@ -1,16 +1,13 @@
-import React, { useContext} from 'react';
+import React, { useContext, useState} from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useFirestore } from "../../hooks/useFirestore";
 import { useItems } from "../../hooks/useItems";
 
 export const AuctionCard = ({ orden }) => {
 
-   const { currentUser, bidAuction} = useContext(AuthContext); 
+   const { currentUser, bidAuction, UStock, UTaken} = useContext(AuthContext); 
 
-  const { docs } = useFirestore("orders");
   const { items } = useItems("items");
-  console.log('docs:', docs)
-   console.log('items:', items) 
+
 
    let entregado = orden.entregado ? 'entregando...' : 'Apartar para Entregar'
 
@@ -24,12 +21,41 @@ export const AuctionCard = ({ orden }) => {
       day: "numeric" // 2-digit
  });
 
+ const [selectState, setSelectState] = useState('');
+
+ const handleSelect = (e) => {
+   setSelectState(e.target.value);
+ }
+
+ let qty 
+ let IdP
+ let prevStock
+ let global
+ let navojoa
+
+
+ orden.items.map((el) => {
+      qty = el.qty
+      IdP = el.id
+      prevStock = el[selectState]
+      global = el.stock
+      navojoa = el.navojoa
+ })
+
+ const handleUStock =()=>{
+     UStock(IdP, qty, selectState, prevStock, global) 
+     UTaken(orden.id, selectState)
+     setTimeout(() => {
+        setSelectState('')
+     },2000);
+ }
+
     return (
             
 
           <div>
           {currentUser && (
-            <div className=" pl-5 col-sm-4 m-1 p-3 my-3 bg-white mt-5 ">
+               <div className=" pl-5 m-1 p-3 my-3 bg-white mt-5 ">
                     <h6>Id-Orden: <span className="text-muted">{orden.id}</span>  </h6>
 
                     <p> <span className='text-muted'>comprador:</span> {orden.buyer.name} </p>
@@ -37,7 +63,6 @@ export const AuctionCard = ({ orden }) => {
                     <p><span className='text-muted'>telefono:</span> {orden.buyer.phone} </p>
                     <p><span className='text-muted'>fecha:</span>  {fullDate}, {hora}</p>
                     <p><span className='text-muted'>direccion:</span>  {orden.buyer.adress}</p>
-                    <br/>
 
                     {orden.items.map((el, i) => (
                         <div key={i}>
@@ -45,6 +70,11 @@ export const AuctionCard = ({ orden }) => {
                          <p><span className='text-muted'>producto:</span>  {el.item}</p>
                          <p><span className='text-muted'>precio:</span>  {el.price}</p>
                          <p><span className='text-muted'>cantidad:</span>  {el.qty}</p>
+                         <div>
+                              <p>
+                                  <span className='text-muted'>Navojoa </span>{navojoa}
+                              </p>
+                         </div>
                         {
                             items.map(item => (
                                  console.log(item.id === el.id ? img = item.pictureUrl[0] : null)
@@ -55,17 +85,47 @@ export const AuctionCard = ({ orden }) => {
                     ))}
                      <br/>
                     <p className="border text-center">
-                      Total a Pagar: $ 
+                      Total a Pagar: $ {' '}
                       <span className="text-white bg-dark fs-4 py-1 px-2 ">{orden.total}</span>
                     </p>
 
                         <button onClick={() => bidAuction(orden.id, currentUser.email)}
-                        className={orden.entregado ? 'btn btn-primary w-100' : 'btn btn-danger w-100'}>{entregado}</button>
+                        className={orden.entregado ? 'd-none' : 'btn btn-danger w-100'}>{entregado}</button>
 
-                       </div>
-     
+                    <div className={!orden.entregado ? 'd-none': 'mt-1'}>
+                        <select className={orden.taken ? 'd-none' : "w-100 btn btn-primary" }  
+                                onChange={handleSelect} value={selectState} >
+                            <option value="" disabled selected>Elija Sucursal para Recoger Pedido</option>
+                            <option value="navojoa">Navojoa</option>
+                        </select>
+                    </div>
+
+                    <div className={!selectState && 'd-none' }>
+                        <button onClick={handleUStock}
+                                className={!orden?.taken 
+                                            ? 'btn btn-danger w-100 mt-3' 
+                                            : 'btn btn-primary w-100 mt-3'} 
+                                            disabled={orden.taken}
+                        >
+
+                                    Aceptar Recoger en Sucursal {' '} 
+
+                             {orden?.recogerEn?.toUpperCase()} {' '} 
+                             {orden?.taken && '✓' }
+                        </button>
+                     </div>     
+
+                     <button className={orden.taken 
+                                        ? 'btn btn-success w-100 mt-3' 
+                                        : 'd-none'} disabled>
+                            Te Esperan en {' '}
+                            {orden?.recogerEn?.toUpperCase()}
+
+                    </button>           
+
+               </div>
           )}
-           </div>
+          </div>
     );
   };
 
